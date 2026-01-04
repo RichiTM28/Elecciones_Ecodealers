@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elecciones Ecodealers 2026 - UNALM</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-orange: #FF8C00;
+            --dark-orange: #cc7000;
+            --light-orange: #ffe0b2;
+            --unalm-green: #205c30;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px; /* Para que el menú no tape los títulos */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fffbf7;
+        }
+
+        /* --- CABECERA Y LOGOS --- */
+        .header-logos {
+            padding: 20px 0;
+            background: white;
+            border-bottom: 4px solid var(--primary-orange);
+            margin-bottom: 30px;
+        }
+        .logo-placeholder {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            border: 3px solid var(--primary-orange);
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        /* AJUSTE SOLICITADO: Logos más pequeños y centrados */
+        .logo-placeholder img {
+            width: 70%;  /* Reducido para que entre bien */
+            height: 70%; 
+            object-fit: contain; /* Asegura que se vea todo el escudo sin cortes */
+        }
+
+        /* --- MENÚ LATERAL (Scroll Sticky Original) --- */
+        .side-nav-container {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 20px; /* Se queda pegado a 20px del techo */
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary-orange);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .side-nav-title {
+            font-weight: bold;
+            color: var(--dark-orange);
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .nav-pills .nav-link {
+            color: #555;
+            text-align: left;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        .nav-pills .nav-link:hover {
+            background-color: #ffe0b2;
+            color: var(--dark-orange);
+        }
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-orange);
+            color: white;
+        }
+
+        /* --- FOTO PROMOCIÓN --- */
+        .promo-photo-container {
+            width: 100%;
+            height: 400px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+        /* --- SECCIONES Y TARJETAS --- */
+        .section-title {
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0 20px 20px 0;
+            display: inline-block;
+            margin-bottom: 30px;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .section-separator {
+            border-top: 1px dashed var(--primary-orange);
+            margin: 40px 0;
+            opacity: 0.3;
+        }
+        .candidate-card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            background: white;
+            height: 100%;
+        }
+        .candidate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
+        }
+        .candidate-img {
+            height: 250px;
+            object-fit: cover;
+            background-color: #e9ecef;
+            border-bottom: 3px solid var(--primary-orange);
+        }
+        .card-text {
+            font-size: 0.9rem;
+            color: #555;
+            text-align: justify;
+        }
+        
+        /* --- GRÁFICOS --- */
+        .custom-chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+        }
+        .chart-area {
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            border-bottom: 2px solid #ccc;
+            border-left: 2px solid #ccc;
+            position: relative;
+            padding-bottom: 5px;
+            padding-top: 60px;
+        }
+        .grid-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            border-top: 1px dashed #ddd;
+            z-index: 0;
+        }
+        .grid-line span {
+            position: absolute;
+            left: -35px;
+            top: -10px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 15%;
+            z-index: 2;
+            position: relative;
+        }
+        .bar-head-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
+            object-fit: cover;
+        }
+        .the-bar {
+            width: 100%;
+            border-radius: 5px 5px 0 0;
+            transition: height 1.5s ease-out;
+            position: relative;
+            min-height: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .percentage-label {
+            color: #333;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: -25px;
+            background: rgba(255,255,255,0.8);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+        .bar-label {
+            margin-top: 10px;
+            font-size: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+            color: #555;
+            line-height: 1.2;
+        }
+
+        /* Colores */
+        .bg-c1 { background-color: #FF8C00; }
+        .bg-c2 { background-color: #20B2AA; }
+        .bg-c3 { background-color: #9370DB; }
+        .bg-c4 { background-color: #3CB371; }
+        .bg-blank { background-color: #A9A9A9; }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-logos">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-3 text-center">
+                    <div class="logo-placeholder">
+                        <img src="fotos/UNALM.png" alt="Logo UNALM"> 
+                    </div>
+                </div>
+                <div class="col-6 text-center">
+                    <h1 class="fw-bold display-5" style="color: var(--primary-orange);">ECODEALERS</h1>
+                    <p class="mb-0 fs-5 text-dark fw-bold">Facultad de Economía y Planificación</p>
+                    <p class="mb-0 text-muted small">Universidad Nacional Agraria La Molina</p>
+                </div>
+                <div class="col-3 text-center">
+                    <div class="logo-placeholder">
+                        <img src="fotos/FEP.png" alt="Logo FEP">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-9 col-md-12">
+                
+                <div class="text-center mb-4">
+                    <p class="lead text-dark">Conoce a los postulantes y decide el futuro de nuestra promo!!!</p>
+                    
+                    <div class="promo-photo-container">
+                        <img src="fotos/Promo_Ecodealers.jpeg" alt="Foto Promoción" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                </div>
+
+                <div id="sec-general" class="row mb-5">
+                    <div class="col-12"><h2 class="section-title">Candidatos Delegado General</h2></div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card candidate-card">
+                            <img src="fotos/Milagros_GENERAL.jpg" class="card-img-top candidate-img" alt="Milagros Carranza">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Milagros Carranza</h5>
+                                <p class="card-text">
+                                    "Hola, chicos 🤍 quiero proponerme como delegada General. Viendo todo lo que implica Interpromos (académico, gymkhana, deportes, bingo, noche naranja y obra benéfica), creo que necesitamos organización real, trabajo en equipo y presencia constante. Me comprometo a coordinar con la MD, organizar a los delegados, cuidar listas y puntajes, apoyar en la economía, promover la participación de todos y representar bien a la promo en cada actividad. No me propongo para figurar, sino para trabajar, escuchar y sacar adelante todo juntos. Sea quien sea que gane, lo importante es que sea por el bien de la promoción. 🙌✨"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="card candidate-card">
+                            <img src="fotos/Jheyner_GENERAL.jpg" class="card-img-top candidate-img" alt="Jheyner Gamboa">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Jheyner Gamboa</h5>
+                                <p class="card-text">
+                                    "Hola, compañeros y compañeras. Además de enfocarnos en la universidad, sé que es importante terminar esta etapa con buenos recuerdos junto a nuestra promoción. Durante estos tres ciclos he participado activamente y estoy seguro de que puedo aportar para que este 2026 logremos una mejor organización, mayor apoyo en las actividades deportivas, transparencia en todo lo que se realice y, sobre todo, una mayor integración entre las tres carreras que conforman la promoción, así como fue durante nuestro ciclo de cachimbos. Espero contar con su apoyo y respaldo."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="card candidate-card">
+                            <img src="fotos/Bryan_GENERAL.png" class="card-img-top candidate-img" alt="Bryan Castro">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Bryan Castro</h5>
+                                <p class="card-text">
+                                    "Hola promo querida. Creo que la mayoría ya me conoce, mi nombre es Brayan y soy de la carrera de gestión, para darle un poco de emoción a las elecciones también quiero postularme como su nuevo delegado general. Mi objetivo es lograr una promo más unida, como cuando éramos cachimbos. Trabajando juntos, sé que podemos lograr muchas cosas. Tengo la seguridad en que tenemos un gran potencial y mucho talento dentro de la promo, lo que nos da la capacidad de ganar en todo lo que nos podemos proponer juntos. Y bueno sin importar quién sea el delegado o delegados este año, ¡vamos a por todas! 🧡"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-separator"></div>
+
+                <div id="sec-cultural" class="row mb-5 justify-content-center">
+                    <div class="col-12"><h2 class="section-title">Candidatos Delegado de Culturales</h2></div>
+                    <div class="col-md-4">
+                        <div class="card candidate-card">
+                           <img src="fotos/Gabriela_CULTURALES.png" class="card-img-top candidate-img" alt="Gabriela Ulloa">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Gabriela Ulloa</h5>
+                                <p class="card-text">
+                                    "Hola, promo ecodilera.🗣 Me llamo ⋆｡‧˚ʚ Gabriela ɞ˚‧｡⋆, anterior delegada de gestión, y postulo para ser su nueva delegada de culturales, comprometida a brindarles organización y detallismo en la integración y unión que se merecen.💝 He estado presente estos 3 ciclos con mi promoción de gestión brindándole mi apoyo y ahora me gustaría hacerlo con el resto de ustedes. Creo poseer las habilidades necesarias para ocupar el puesto y así darles un año con más recuerdos memorables de todos nosotros. 🫶🧡"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-separator"></div>
+
+                <div id="sec-deportes" class="row mb-5 justify-content-center">
+                    <div class="col-12"><h2 class="section-title">Candidatos Delegado de Deportes</h2></div>
+                    <div class="col-md-5 mb-3">
+                        <div class="card candidate-card">
+                            <img src="fotos/Sergio_DEPORTES.png" class="card-img-top candidate-img" alt="Sergio Mamani">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Sergio Mamani</h5>
+                                <p class="card-text">
+                                    "¡Hola a todos! Tras la experiencia del último año, he decidido postularme nuevamente para representarlos en el área deportiva. Conozco la organización de los deportes y mi compromiso seguirá igual para este año. Ya han observado mi desempeño en el cargo, desde estar presente en todos los deportes hasta solucionar cualquier inconveniente de último momento. Hemos logrado conseguir varios podios, pero el objetivo ahora será ganar las Interpromos y para esto trabajaremos todos juntos."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <div class="card candidate-card">
+                            <img src="fotos/Valentino_DEPORTES.png" class="card-img-top candidate-img" alt="Valentino Gallardo">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Valentino Gallardo</h5>
+                                <p class="card-text">
+                                    "Promo querida, me postulo como delegado de Deportes porque creo en el trabajo en equipo y en la importancia de mantenernos activos y unidos como promoción. Mi compromiso con ustedes es estar presente, organizar entrenamientos, impulsar los juegos y seguir participando activamente, como muchos ya han podido notar este año. De cara al 2026, estoy convencido de que juntos podemos ganar interpromos, y el deporte no puede ser la excepción. Con organización, constancia y motivación, podemos lograr grandes resultados. Cuento con su apoyo y su voto.¡Arriba Ecodealers! 🧡💪"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-separator"></div>
+
+                <div id="sec-eco" class="row mb-5 justify-content-center">
+                    <div class="col-12"><h2 class="section-title">Candidatos Delegado Economía</h2></div>
+                    <div class="col-md-4">
+                        <div class="card candidate-card">
+                            <img src="fotos/Danna_ECONOMIA.png" class="card-img-top candidate-img" alt="Danna Quispe">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Danna Quispe</h5>
+                                <p class="card-text">
+                                    "Hola, soy Danna. Me gustaría postularme como delegada de Economía. Me considero una persona responsable y comprometida con lo que me propongo. Soy organizada, participativa y busco representar las ideas del grupo. Espero contar con su apoyo y poder ganarme su confianza para desempeñar este puesto. 🤍"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-separator"></div>
+
+                <div id="sec-est" class="row mb-5 justify-content-center">
+                    <div class="col-12"><h2 class="section-title">Candidatos Delegado Estadística Informática</h2></div>
+                    <div class="col-md-4">
+                        <div class="card candidate-card">
+                            <img src="fotos/Wellington_ESTADISTICA.jpg" class="card-img-top candidate-img" alt="Wellington Terreros">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Wellington Terreros</h5>
+                                <p class="card-text">
+                                    "¡Hola, promo Ecodealers! Somos de Estadística Informática y sabemos que tenemos un perfil único en la facultad. Mi propuesta es simple: quiero que ese talento se note más que nunca. Como delegado, mi meta es potenciar nuestra presencia en cada actividad de la promoción. Que no solo seamos asistentes, sino protagonistas. Tenemos mucho que aportar a esta linda promo, y es momento de que se sienta nuestra marca en todo lo que hagamos. ¡Cuento con ustedes!"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-separator"></div>
+
+                <div id="sec-ige" class="row mb-5">
+                    <div class="col-12"><h2 class="section-title">Candidatos Delegado Ing. Gestión Empresarial</h2></div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card candidate-card">
+                            <img src="fotos/Sylvana_GESTION.jpg" class="card-img-top candidate-img" alt="Sylvana Ames">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Sylvana Ames</h5>
+                                <p class="card-text">
+                                    "Me postulo como delegada porque quiero apoyar a nuestra promo, unirnos más y que trabajemos en equipo. Me comprometo a escuchar a todos, representarnos bien y motivarnos para dar lo mejor en las Interpromos y en cada actividad. La idea es apoyarnos, organizarnos y disfrutar esta etapa juntos."
+                                </p>
+                            </div>
+                        </div>
+                    </div> <div class="col-md-4 mb-3">
+                        <div class="card candidate-card">
+                            <img src="fotos/Angela_GESTION.png" class="card-img-top candidate-img" alt="Angela Flores">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Angela Flores</h5>
+                                <p class="card-text">
+                                    "Hola que tal mi nombre es Angela Flores. Para este nuevo año quisiera lograr muchos retos, trabajando todos juntos como promoción con mucho respeto y compromiso...De mi recibirán apoyo y también deseo recibir vuestro apoyo. ¡¡¡Muchas gracias de antemano y esperemos que este 2026 este lleno de nuevas metas y victorias para nosotros como promoción!!!"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card candidate-card">
+                            <img src="fotos/Camila_GESTION.png" class="card-img-top candidate-img" alt="Camila Pacheco">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Camila Pacheco</h5>
+                                <p class="card-text">
+                                    "Buenas. No muchos me conocerán, pero soy Camila Pacheco, compañera de la promoción de Gestión. Me presento para postular como representante de nuestra carrera, Ingeniería en Gestión Empresarial. Aunque no convivo mucho con la promoción, he estado atenta a lo que sucede y quiero aportar como delegada, compartiendo información sobre exámenes, profesores y oportunidades externas como becas o cursos útiles para nuestro currículum. También me gustaría conocerlos mejor para poder apoyarlos y guiarlos. Busco que este año sea mejor y que estemos unidos como promoción para dar lo mejor como gestores."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sec-voting" class="py-5 mt-5" style="background-color: #fff3e0; border-radius: 15px;">
+                    <div class="px-4">
+                        <h2 class="text-center fw-bold mb-4 display-6" style="color: var(--dark-orange);">Centro de Votación</h2>
+                        
+                        <div class="alert text-center text-white fw-bold shadow-sm" style="background-color: var(--primary-orange);">
+                            <i class="bi bi-calendar-check me-2"></i>
+                            La votación será del Jueves 08 de Enero al Sábado 10 de Enero 
+                        </div>
+
+                        <div class="text-center mt-4 mb-5">
+                            <a href="LINK_GOOGLE_FORM" target="_blank" class="btn btn-dark btn-lg px-5 rounded-pill shadow">
+                                PRONTO ESTARÁ DISPONIBLE
+                            </a>
+                        </div>
+
+                        <hr class="my-5 text-muted">
+
+                        <h3 class="text-center mb-5">Resultados Preliminares</h3>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="custom-chart-container">
+                                    <h4 class="text-center mb-4">Delegado General</h4>
+                                    <div id="chart-general" class="chart-area-wrapper"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="custom-chart-container">
+                                    <h4 class="text-center mb-4">Delegado de Culturales</h4>
+                                    <div id="chart-cultural" class="chart-area-wrapper"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="custom-chart-container">
+                                    <h4 class="text-center mb-4">Delegado de Deportes</h4>
+                                    <div id="chart-deportes" class="chart-area-wrapper"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="custom-chart-container">
+                                    <h4 class="text-center mb-4">Delegado Economía</h4>
+                                    <div id="chart-eco" class="chart-area-wrapper"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="custom-chart-container">
+                                    <h4 class="text-center mb-4">Delegado Estadística</h4>
+                                    <div id="chart-est" class="chart-area-wrapper"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="custom-chart-container">
+                                    <h4 class="text-center mb-4">Delegado IGE</h4>
+                                    <div id="chart-ige" class="chart-area-wrapper"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <div class="col-lg-3 col-md-12 mt-4 mt-lg-0">
+                <nav class="side-nav-container">
+                    <div class="side-nav-title">Navegación Rápida</div>
+                    <div class="nav flex-column nav-pills">
+                        <a class="nav-link" href="#sec-general"><i class="bi bi-people me-2"></i> Delegado General</a>
+                        <a class="nav-link" href="#sec-cultural"><i class="bi bi-music-note-beamed me-2"></i> Culturales</a>
+                        <a class="nav-link" href="#sec-deportes"><i class="bi bi-trophy me-2"></i> Deportes</a>
+                        <a class="nav-link" href="#sec-eco"><i class="bi bi-graph-up-arrow me-2"></i> Economía</a>
+                        <a class="nav-link" href="#sec-est"><i class="bi bi-pc-display me-2"></i> Estadística Inf.</a>
+                        <a class="nav-link" href="#sec-ige"><i class="bi bi-briefcase me-2"></i> Ing. Gestión Emp.</a>
+                        <hr>
+                        <a class="nav-link fw-bold" href="#sec-voting" style="color:var(--dark-orange);">
+                            <i class="bi bi-check-circle-fill me-2"></i> Centro de Votación
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+        </div> </div> <footer>
+        <div class="container">
+            <p class="mb-0">© 2026 Ecodealers - Facultad de Economía y Planificación UNALM</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        /* CONFIGURACIÓN DE GRÁFICOS */
+        
+        const chartData = {
+            general: [
+                { name: "Milagros", percent: 0, img: "fotos/Milagros_GENERAL.jpg", color: "bg-c1" },
+                { name: "Jheyner", percent: 0, img: "fotos/Jheyner_GENERAL.jpg", color: "bg-c2" },
+                { name: "Bryan", percent: 0, img: "fotos/Bryan_GENERAL.png", color: "bg-c3" },
+                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+            ],
+            cultural: [
+                { name: "Gabriela", percent: 0, img: "fotos/Gabriela_CULTURALES.png", color: "bg-c4" },
+                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+            ],
+            deportes: [
+                { name: "Sergio", percent: 0, img: "fotos/Sergio_DEPORTES.png", color: "bg-c1" },
+                { name: "Valentino", percent: 0, img: "fotos/Valentino_DEPORTES.png", color: "bg-c2" },
+                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+            ],
+            eco: [
+                { name: "Danna", percent: 0, img: "fotos/Danna_ECONOMIA.png", color: "bg-c2" },
+                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+            ],
+            est: [
+                { name: "Wellington", percent: 0, img: "fotos/Wellington_ESTADISTICA.jpg", color: "bg-c3" },
+                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+            ],
+            ige: [
+                { name: "Sylvana", percent: 0, img: "fotos/Sylvana_GESTION.jpg", color: "bg-c1" },
+                { name: "Camila", percent: 0, img: "fotos/Camila_GESTION.png", color: "bg-c2" },
+                { name: "Angela", percent: 0, img: "fotos/Angela_GESTION.png", color: "bg-c3" },
+                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+            ]
+        };
+
+        function renderHTMLChart(elementId, data) {
+            const container = document.getElementById(elementId);
+            let html = `
+                <div class="chart-area">
+                    <div class="grid-line" style="bottom: 0%"><span>0%</span></div>
+                    <div class="grid-line" style="bottom: 25%"><span>25%</span></div>
+                    <div class="grid-line" style="bottom: 50%"><span>50%</span></div>
+                    <div class="grid-line" style="bottom: 75%"><span>75%</span></div>
+                    <div class="grid-line" style="bottom: 100%"><span>100%</span></div>
+            `;
+            data.forEach(item => {
+                html += `
+                    <div class="bar-wrapper">
+                        <img src="${item.img}" class="bar-head-photo" alt="foto">
+                        <div class="the-bar ${item.color}" style="height: ${item.percent}%;">
+                            ${item.percent > 5 ? `<span class="percentage-label">${item.percent}%</span>` : ''}
+                        </div>
+                        <div class="bar-label">${item.name}</div>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHTMLChart('chart-general', chartData.general);
+            renderHTMLChart('chart-cultural', chartData.cultural);
+            renderHTMLChart('chart-deportes', chartData.deportes);
+            renderHTMLChart('chart-eco', chartData.eco);
+            renderHTMLChart('chart-est', chartData.est);
+            renderHTMLChart('chart-ige', chartData.ige);
+        });
+    </script>
+</body>
+</html>
