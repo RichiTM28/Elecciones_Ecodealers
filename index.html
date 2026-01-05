@@ -249,7 +249,7 @@
                     </div>
                 </div>
                 <div class="col-6 text-center">
-                    <h1 class="fw-bold display-5" style="color: var(--primary-orange);">ELECCIONES ECODEALERS 2026</h1>
+                    <h1 class="fw-bold display-5" style="color: var(--primary-orange);">ECODEALERS</h1>
                     <p class="mb-0 fs-5 text-dark fw-bold">Facultad de Economía y Planificación</p>
                     <p class="mb-0 text-muted small">Universidad Nacional Agraria La Molina</p>
                 </div>
@@ -381,6 +381,17 @@
 
                 <div id="sec-est" class="row mb-5 justify-content-center">
                     <div class="col-12"><h2 class="section-title">Candidatos Delegado Estadística Informática</h2></div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card candidate-card">
+                            <img src="fotos/Salvatore_ESTADISTICA.jpg" class="card-img-top candidate-img" alt="Salvatore Polo">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Salvatore Polo</h5>
+                                <p class="card-text">
+                                    "¡Hola querida promo! Me presento, soy Salvatore de la carrera de Estadística y me postulo como delegado de la carrera. Es mi primera vez asumiendo un rol de este estilo, pero prometo poner en alto a nuestra promoción en las actividades que se realizarán este año. En este nuevo año 2026 seremos mucho más representativos en la facultad y mejoraremos en cuanto al trabajo en conjunto y a nuestra organización. Prometo ser disciplinado y perseverante en el rol que conlleva ser delegado. ¡Muchas gracias!"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-4">
                         <div class="card candidate-card">
                             <img src="fotos/Wellington_ESTADISTICA.jpg" class="card-img-top candidate-img" alt="Wellington Terreros">
@@ -409,7 +420,8 @@
                                 </p>
                             </div>
                         </div>
-                    </div> <div class="col-md-4 mb-3">
+                    </div> 
+                    <div class="col-md-4 mb-3">
                         <div class="card candidate-card">
                             <img src="fotos/Angela_GESTION.png" class="card-img-top candidate-img" alt="Angela Flores">
                             <div class="card-body">
@@ -550,6 +562,7 @@
                 { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
             ],
             est: [
+                { name: "Salvatore", percent: 0, img: "fotos/Salvatore_ESTADISTICA.jpg", color: "bg-c1" },
                 { name: "Wellington", percent: 0, img: "fotos/Wellington_ESTADISTICA.jpg", color: "bg-c3" },
                 { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
             ],
@@ -577,7 +590,7 @@
                         <img src="${item.img}" class="bar-head-photo" alt="foto">
                         <div class="the-bar ${item.color}" style="height: ${item.percent}%;">
                             ${item.percent > 5 ? `<span class="percentage-label">${item.percent}%</span>` : ''}
-                        </div>
+                     </div>
                         <div class="bar-label">${item.name}</div>
                     </div>
                 `;
@@ -596,5 +609,6 @@
         });
     </script>
 </body>
-
+</html>   
 </html>
+
