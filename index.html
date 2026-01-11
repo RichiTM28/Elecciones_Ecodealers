@@ -18,7 +18,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 100px; /* Para que el menú no tape los títulos */
+            scroll-padding-top: 100px;
         }
 
         body {
@@ -47,18 +47,17 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
-        /* AJUSTE SOLICITADO: Logos más pequeños y centrados */
         .logo-placeholder img {
-            width: 70%;  /* Reducido para que entre bien */
+            width: 70%;
             height: 70%; 
-            object-fit: contain; /* Asegura que se vea todo el escudo sin cortes */
+            object-fit: contain;
         }
 
-        /* --- MENÚ LATERAL (Scroll Sticky Original) --- */
+        /* --- MENÚ LATERAL (Sticky) --- */
         .side-nav-container {
             position: -webkit-sticky;
             position: sticky;
-            top: 20px; /* Se queda pegado a 20px del techo */
+            top: 20px;
             background: white;
             padding: 20px;
             border-radius: 10px;
@@ -104,7 +103,7 @@
             border: 1px solid #ccc;
         }
 
-        /* --- SECCIONES Y TARJETAS --- */
+        /* --- TARJETAS DE CANDIDATOS --- */
         .section-title {
             background-color: var(--primary-orange);
             color: white;
@@ -136,6 +135,7 @@
             object-fit: cover;
             background-color: #e9ecef;
             border-bottom: 3px solid var(--primary-orange);
+            width: 100%;
         }
         .card-text {
             font-size: 0.9rem;
@@ -143,6 +143,22 @@
             text-align: justify;
         }
         
+        /* --- ESTILOS GANADORES --- */
+        .winner-card {
+            border: 2px solid #FFD700; /* Borde dorado */
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        .winner-badge {
+            background-color: #FFD700;
+            color: #333;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
         /* --- GRÁFICOS --- */
         .custom-chart-container {
             background: white;
@@ -152,15 +168,15 @@
             margin-bottom: 50px;
         }
         .chart-area {
-            height: 300px;
+            height: 350px; 
             display: flex;
             align-items: flex-end;
             justify-content: space-around;
             border-bottom: 2px solid #ccc;
             border-left: 2px solid #ccc;
             position: relative;
-            padding-bottom: 5px;
-            padding-top: 60px;
+            padding-bottom: 0px; 
+            margin-top: 20px;
         }
         .grid-line {
             position: absolute;
@@ -214,12 +230,17 @@
             border-radius: 4px;
         }
         .bar-label {
-            margin-top: 10px;
+            margin-top: 5px;
             font-size: 0.75rem;
             text-align: center;
             font-weight: 600;
             color: #555;
-            line-height: 1.2;
+            line-height: 1.1;
+            height: 40px; 
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow: hidden;
         }
 
         /* Colores */
@@ -249,7 +270,7 @@
                     </div>
                 </div>
                 <div class="col-6 text-center">
-                    <h1 class="fw-bold display-5" style="color: var(--primary-orange);">Elecciones ECODEALERS 2026</h1>
+                    <h1 class="fw-bold display-5" style="color: var(--primary-orange);">ELECCIONES ECODEALERS 2026</h1>
                     <p class="mb-0 fs-5 text-dark fw-bold">Facultad de Economía y Planificación</p>
                     <p class="mb-0 text-muted small">Universidad Nacional Agraria La Molina</p>
                 </div>
@@ -292,9 +313,9 @@
 
                     <div class="col-md-4 mb-3">
                         <div class="card candidate-card">
-                            <img src="fotos/Jheyner_GENERAL.jpg" class="card-img-top candidate-img" alt="Yeyner Gamboa">
+                            <img src="fotos/Jheyner_GENERAL.jpg" class="card-img-top candidate-img" alt="Jheyner Gamboa">
                             <div class="card-body">
-                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Yeyner Gamboa</h5>
+                                <h5 class="fw-bold text-orange" style="color:var(--dark-orange)">Jheyner Gamboa</h5>
                                 <p class="card-text">
                                     "Hola, compañeros y compañeras. Además de enfocarnos en la universidad, sé que es importante terminar esta etapa con buenos recuerdos junto a nuestra promoción. Durante estos tres ciclos he participado activamente y estoy seguro de que puedo aportar para que este 2026 logremos una mejor organización, mayor apoyo en las actividades deportivas, transparencia en todo lo que se realice y, sobre todo, una mayor integración entre las tres carreras que conforman la promoción, así como fue durante nuestro ciclo de cachimbos. Espero contar con su apoyo y respaldo."
                                 </p>
@@ -381,7 +402,8 @@
 
                 <div id="sec-est" class="row mb-5 justify-content-center">
                     <div class="col-12"><h2 class="section-title">Candidatos Delegado Estadística Informática</h2></div>
-                    <div class="col-md-4 mb-3">
+                    
+                    <div class="col-md-5 mb-3">
                         <div class="card candidate-card">
                             <img src="fotos/Salvatore_ESTADISTICA.jpg" class="card-img-top candidate-img" alt="Salvatore Polo">
                             <div class="card-body">
@@ -392,7 +414,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    
+                    <div class="col-md-5 mb-3">
                         <div class="card candidate-card">
                             <img src="fotos/Wellington_ESTADISTICA.jpg" class="card-img-top candidate-img" alt="Wellington Terreros">
                             <div class="card-body">
@@ -457,13 +480,13 @@
 
                         <div class="text-center mt-4 mb-5">
                             <a href="https://forms.gle/QcbdkWAeRgCUgqLb8" target="_blank" class="btn btn-dark btn-lg px-5 rounded-pill shadow">
-                                ¡¡¡EMITE TU VOTO AQUI!!!
+                                VOTACIÓN CONCLUIDA
                             </a>
                         </div>
 
                         <hr class="my-5 text-muted">
 
-                        <h3 class="text-center mb-5">Resultados Preliminares</h3>
+                        <h3 class="text-center mb-5">Resultados Oficiales</h3>
 
                         <div class="row">
                             <div class="col-lg-6">
@@ -512,6 +535,81 @@
                     </div>
                 </div>
 
+                <div class="section-separator"></div>
+                
+                <div id="sec-winners" class="py-5">
+                    <div class="text-center mb-5">
+                        <h2 class="display-6 fw-bold" style="color: var(--primary-orange);">MESA DIRECTIVA ECODEALERS 2026</h2>
+                        <p class="text-muted">¡Felicitaciones a los nuevos representantes de nuestra promoción!</p>
+                    </div>
+
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-md-4">
+                            <div class="card candidate-card winner-card text-center">
+                                <img src="fotos/Jheyner_GENERAL.jpg" class="card-img-top candidate-img" alt="Jheyner Gamboa">
+                                <div class="card-body">
+                                    <span class="winner-badge">🏆 DELEGADO GENERAL 2026</span>
+                                    <h4 class="fw-bold text-dark">Jheyner Gamboa</h4>
+                                    <p class="text-muted">Ing. Gestión Empresarial</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-md-4 mb-3">
+                            <div class="card candidate-card winner-card text-center">
+                                <img src="fotos/Gabriela_CULTURALES.png" class="card-img-top candidate-img" alt="Gabriela Ulloa">
+                                <div class="card-body">
+                                    <span class="winner-badge">🎭 DEL. CULTURALES 2026</span>
+                                    <h4 class="fw-bold text-dark">Gabriela Ulloa</h4>
+                                    <p class="text-muted">Ing. Gestión Empresarial</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card candidate-card winner-card text-center">
+                                <img src="fotos/Valentino_DEPORTES.png" class="card-img-top candidate-img" alt="Valentino Gallardo">
+                                <div class="card-body">
+                                    <span class="winner-badge">⚽ DEL. DEPORTES 2026</span>
+                                    <h4 class="fw-bold text-dark">Valentino Gallardo</h4>
+                                    <p class="text-muted">Economía</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 mb-3">
+                            <div class="card candidate-card winner-card text-center">
+                                <img src="fotos/Danna_ECONOMIA.png" class="card-img-top candidate-img" alt="Danna Quispe">
+                                <div class="card-body">
+                                    <span class="winner-badge">📉 DEL. ECONOMÍA 2026</span>
+                                    <h4 class="fw-bold text-dark">Danna Quispe</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card candidate-card winner-card text-center">
+                                <img src="fotos/Wellington_ESTADISTICA.jpg" class="card-img-top candidate-img" alt="Wellington Terreros">
+                                <div class="card-body">
+                                    <span class="winner-badge">💻 DEL. ESTADÍSTICA 2026</span>
+                                    <h4 class="fw-bold text-dark">Wellington Terreros</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card candidate-card winner-card text-center">
+                                <img src="fotos/Angela_GESTION.png" class="card-img-top candidate-img" alt="Angela Flores">
+                                <div class="card-body">
+                                    <span class="winner-badge">👔 DEL. IGE 2026</span>
+                                    <h4 class="fw-bold text-dark">Angela Flores</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div> <div class="col-lg-3 col-md-12 mt-4 mt-lg-0">
                 <nav class="side-nav-container">
                     <div class="side-nav-title">Navegación Rápida</div>
@@ -526,11 +624,18 @@
                         <a class="nav-link fw-bold" href="#sec-voting" style="color:var(--dark-orange);">
                             <i class="bi bi-check-circle-fill me-2"></i> Centro de Votación
                         </a>
+                        <hr>
+                        <a class="nav-link fw-bold text-success" href="#sec-winners">
+                            <i class="bi bi-star-fill me-2"></i> MESA DIRECTIVA 2026
+                        </a>
                     </div>
                 </nav>
             </div>
 
-        </div> </div> <footer>
+        </div> 
+    </div> 
+
+    <footer>
         <div class="container">
             <p class="mb-0">© 2026 Ecodealers - Facultad de Economía y Planificación UNALM</p>
         </div>
@@ -539,58 +644,88 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        /* CONFIGURACIÓN DE GRÁFICOS */
+        /* CONFIGURACIÓN DE DATOS DE VOTACIÓN */
         
         const chartData = {
-            general: [
-                { name: "Milagros", percent: 0, img: "fotos/Milagros_GENERAL.jpg", color: "bg-c1" },
-                { name: "Yeyner", percent: 0, img: "fotos/Jheyner_GENERAL.jpg", color: "bg-c2" },
-                { name: "Bryan", percent: 0, img: "fotos/Bryan_GENERAL.png", color: "bg-c3" },
-                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
-            ],
-            cultural: [
-                { name: "Gabriela", percent: 0, img: "fotos/Gabriela_CULTURALES.png", color: "bg-c4" },
-                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
-            ],
-            deportes: [
-                { name: "Sergio", percent: 0, img: "fotos/Sergio_DEPORTES.png", color: "bg-c1" },
-                { name: "Valentino", percent: 0, img: "fotos/Valentino_DEPORTES.png", color: "bg-c2" },
-                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
-            ],
-            eco: [
-                { name: "Danna", percent: 0, img: "fotos/Danna_ECONOMIA.png", color: "bg-c2" },
-                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
-            ],
-            est: [
-                { name: "Salvatore", percent: 0, img: "fotos/Salvatore_ESTADISTICA.jpg", color: "bg-c1" },
-                { name: "Wellington", percent: 0, img: "fotos/Wellington_ESTADISTICA.jpg", color: "bg-c3" },
-                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
-            ],
-            ige: [
-                { name: "Sylvana", percent: 0, img: "fotos/Sylvana_GESTION.jpg", color: "bg-c1" },
-                { name: "Camila", percent: 0, img: "fotos/Camila_GESTION.png", color: "bg-c2" },
-                { name: "Angela", percent: 0, img: "fotos/Angela_GESTION.png", color: "bg-c3" },
-                { name: "Blanco", percent: 0, img: "fotos/Voto_blanco.png", color: "bg-blank" }
-            ]
+            general: {
+                total: 77,
+                candidates: [
+                    { name: "Jheyner", percent: 34.5, img: "fotos/Jheyner_GENERAL.jpg", color: "bg-c2" },
+                    { name: "Milagros", percent: 31, img: "fotos/Milagros_GENERAL.jpg", color: "bg-c1" },
+                    { name: "Bryan", percent: 26, img: "fotos/Bryan_GENERAL.png", color: "bg-c3" },
+                    { name: "Blanco", percent: 7.8, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+                ]
+            },
+            cultural: {
+                total: 77,
+                candidates: [
+                    { name: "Gabriela", percent: 84.4, img: "fotos/Gabriela_CULTURALES.png", color: "bg-c4" },
+                    { name: "Blanco", percent: 15.6, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+                ]
+            },
+            deportes: {
+                total: 77,
+                candidates: [
+                    { name: "Valentino", percent: 63.6, img: "fotos/Valentino_DEPORTES.png", color: "bg-c2" },
+                    { name: "Sergio", percent: 31.2, img: "fotos/Sergio_DEPORTES.png", color: "bg-c1" },
+                    { name: "Blanco", percent: 5.2, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+                ]
+            },
+            eco: {
+                total: 22,
+                candidates: [
+                    { name: "Danna", percent: 90.9, img: "fotos/Danna_ECONOMIA.png", color: "bg-c2" },
+                    { name: "Blanco", percent: 9.1, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+                ]
+            },
+            est: {
+                total: 26,
+                candidates: [
+                    { name: "Wellington", percent: 69.2, img: "fotos/Wellington_ESTADISTICA.jpg", color: "bg-c3" },
+                    { name: "Salvatore", percent: 26.9, img: "fotos/Salvatore_ESTADISTICA.jpg", color: "bg-c1" },
+                    { name: "Blanco", percent: 3.8, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+                ]
+            },
+            ige: {
+                total: 29,
+                candidates: [
+                    { name: "Angela", percent: 34.5, img: "fotos/Angela_GESTION.png", color: "bg-c3" },
+                    { name: "Sylvana", percent: 31, img: "fotos/Sylvana_GESTION.jpg", color: "bg-c1" },
+                    { name: "Camila", percent: 27.6, img: "fotos/Camila_GESTION.png", color: "bg-c2" },
+                    { name: "Blanco", percent: 6.9, img: "fotos/Voto_blanco.png", color: "bg-blank" }
+                ]
+            }
         };
 
-        function renderHTMLChart(elementId, data) {
+        function renderHTMLChart(elementId, dataObj) {
             const container = document.getElementById(elementId);
+            
+            // LÓGICA DE ALINEACIÓN EXACTA
+            const offset = 40;
+            const scale100 = 220; // 100% = 220 píxeles de barra
+            
             let html = `
+                <div class="text-center text-secondary fw-bold mb-4" style="font-size: 0.9rem;">
+                    Total de votos: ${dataObj.total} votantes (100%)
+                </div>
                 <div class="chart-area">
-                    <div class="grid-line" style="bottom: 0%"><span>0%</span></div>
-                    <div class="grid-line" style="bottom: 25%"><span>25%</span></div>
-                    <div class="grid-line" style="bottom: 50%"><span>50%</span></div>
-                    <div class="grid-line" style="bottom: 75%"><span>75%</span></div>
-                    <div class="grid-line" style="bottom: 100%"><span>100%</span></div>
+                    <div class="grid-line" style="bottom: ${offset}px"><span>0%</span></div>
+                    <div class="grid-line" style="bottom: ${offset + (scale100 * 0.25)}px"><span>25%</span></div>
+                    <div class="grid-line" style="bottom: ${offset + (scale100 * 0.50)}px"><span>50%</span></div>
+                    <div class="grid-line" style="bottom: ${offset + (scale100 * 0.75)}px"><span>75%</span></div>
+                    <div class="grid-line" style="bottom: ${offset + scale100}px"><span>100%</span></div>
             `;
-            data.forEach(item => {
+            
+            dataObj.candidates.forEach(item => {
+                // Cálculo de altura de la barra
+                const heightInPixels = (item.percent / 100) * scale100;
+
                 html += `
                     <div class="bar-wrapper">
-                        <img src="${item.img}" class="bar-head-photo" alt="foto">
-                        <div class="the-bar ${item.color}" style="height: ${item.percent}%;">
-                            ${item.percent > 5 ? `<span class="percentage-label">${item.percent}%</span>` : ''}
-                     </div>
+                        <img src="${item.img}" class="bar-head-photo" alt="${item.name}">
+                        <div class="the-bar ${item.color}" style="height: ${heightInPixels}px;">
+                            ${item.percent > 4 ? `<span class="percentage-label">${item.percent}%</span>` : ''}
+                        </div>
                         <div class="bar-label">${item.name}</div>
                     </div>
                 `;
@@ -609,8 +744,4 @@
         });
     </script>
 </body>
-</html>   
 </html>
-
-
-
